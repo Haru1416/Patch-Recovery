@@ -6,10 +6,10 @@ on:
       RECOVERY_URL:
         description: 'RECOVERY URL'
         required: true
-        default: 'https://transfer.sh/(RECOMMENDED)'
+        default: 'https://oshi.at/rsaU'
 
 env:
-  RECOVERY_URL: https://drive.google.com/file/d/19EQ0EM3KB3tuzMJTH1om568pNz39_6FA/view?usp=drive_link
+  RECOVERY_URL: https://oshi.at/Rpjg
 
 jobs:
   build:
