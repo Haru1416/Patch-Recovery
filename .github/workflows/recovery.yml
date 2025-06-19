@@ -13,7 +13,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
     - name: Check Out
@@ -27,7 +27,7 @@ jobs:
       run: |
         ls
         pwd
-        wget ${{github.event.inputs.RECOVERY_URL }}
+        wget ${{github.event.inputs.RECOVERY_URL }} -O recovery.img
 
     - name: Patch Process-1
       run: |
@@ -44,9 +44,11 @@ jobs:
         mkdir output && cd output
         mv ../recovery-patched.img recovery.img
         tar cvf fastbootd-recovery.tar recovery.img
+        md5sum -t fastbootd-recovery.tar >> fastbootd-recovery.tar
+        mv fastbootd-recovery.tar fastbootd-recovery.tar.md5
 
     - name: Upload Recovery
       uses: actions/upload-artifact@v3.0.0
       with:
-        path: /home/runner/work/Patch-Recovery/Patch-Recovery/output/*.tar
+        path: /home/runner/work/Patch-Recovery/Patch-Recovery/output/*.md5
         name: Patched-Recovery
